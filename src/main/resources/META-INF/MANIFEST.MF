@@ -1,0 +1,3 @@
+Manifest-Version: 1.0
+Main-Class: com.nifou.m.ifou_mobile_was.IfouMobileWasApplication
+

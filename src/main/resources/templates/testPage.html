@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/user/login.gaon" method="post">
+    <h3>로그인 테스트  /user/login.gaon</h3>
+    <input type="text" name="userid" id="userid" value="nifou2"/><br />
+    <input type="password" name="userpw" id="userpw" value="1" /><br />
+    <input type="submit" value="로그인"/>
+</form>
+<form action="/common/get_main_dashboard" method="post">
+    <h3>대시보드(전일매출현황/월매출통계 조회)테스트  /common/get_main_dashboard</h3>
+    <input type="text" name="orgcd"  value="OR0016" /><br />
+    <input type="text" name="appdd" id="appdd" value="20230530" /><br />
+    <input type="submit" value="조회"/>
+</form>
+<form action="/common/get_main_dashboard2" method="post">
+    <h3>대시보드(당일입금현황 조회)테스트  /common/get_main_dashboard2</h3>
+    <input type="text" name="orgcd"  value="OR0016" /><br />
+    <input type="text" name="expdd"  value="20230530" /><br />
+    <input type="submit" value="조회"/>
+</form>
+
+<form action="/common/get_menu.gaon" method="post">
+    <h3>메뉴 출력 테스트  /common/get_menu.gaon</h3>
+    <input type="text" name="auth_seq" id="auth_seq" value="AS000001"/><br />
+    <input type="text" name="orgcd"  value="OR0016" /><br />
+    <input type="submit" value="메뉴 출력 테스트"/>
+</form>
+
+<form action="/common/get_depcd" method="post">
+    <h3>사업부 출력 테스트  /common/get_depcd</h3>
+    <input type="text" name="orgcd" value="OR0016" /><br />
+    <input type="submit" value="사업부 출력 테스트"/>
+</form>
+
+<form action="/common/get_acqcd" method="post">
+    <h3>카드사 출력 테스트  /common/get_acqcd</h3>
+    <input type="text" name="orgcd"  value="OR0016" /><br />
+    <input type="submit" value="카드사 출력 테스트"/>
+</form>
+
+
+<form action="/common/get_tidcd" method="post">
+    <h3>단말기 출력 테스트  /common/get_tidcd</h3>
+    <input type="text" name="orgcd" id="orgcd" value="OR0016" /><br />
+    <input type="submit" value="단말기 출력 테스트"/>
+</form>
+
+<form action="/common/columns.gaon" method="post">
+    <h3>그리드컬럼 출력 테스트  /common/columns.gaon</h3>
+    <input type="text" name="orgcd"  value="OR0016" /><br />
+    <input type="text" name="pages"  value="0204M" /><br />
+    <input type="submit" value="그리드컬럼 출력"/>
+</form>
+
+
+<form action="/sub02/04.gaon" method="post">
+    <h3>카드사별 조회 출력 테스트  /sub02/04.gaon</h3>
+    <input type="text" name="sappdd"  value="20230303" /><br />
+    <input type="text" name="eappdd"  value="20230304" /><br />
+    <input type="text" name="orgcd"  value="OR0016" /><br />
+    <input type="text" name="depcd"  value="MD1676596348" /><br />
+    <input type="text" name="acqcd"  value="02" /><br />
+    <input type="submit" value="그리드컬럼 출력"/>
+</form>
+
+</body>
+</html>
