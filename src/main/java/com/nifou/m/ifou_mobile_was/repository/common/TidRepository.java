@@ -16,6 +16,6 @@ public interface TidRepository extends JpaRepository<TidEntity, Long> {
             "       FROM" +
             "            TB_BAS_TIDMST" +
             "       WHERE" +
-            "            ORG_CD = :orgcd"
+            "            ORG_CD = :orgcd AND TERM_NM IS NOT NULL AND TERM_ID IS NOT NULL"
             , nativeQuery = true)
     public ArrayList<TidEntity> getTid(@Param("orgcd") String orgcd);}

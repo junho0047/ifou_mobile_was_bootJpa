@@ -21,6 +21,9 @@ public class CommonService {
     private AcqRepository acqRepository;
     @Autowired
     private TidRepository tidRepository;
+
+    @Autowired
+    private ColumnsRepository columnsRepository;
     public DashBoard1Entity getDashBoard1(String orgCd, String appdd) {
         DashBoard1Entity dashBoard = dashBoard1Repository.getDashBoard(orgCd, appdd);
         return dashBoard;
@@ -50,5 +53,10 @@ public class CommonService {
     public ArrayList<TidEntity> getTid(String orgCd) {
         ArrayList<TidEntity> tid = tidRepository.getTid(orgCd);
         return tid;
+    }
+
+    public ArrayList<ColumnsEntity> getTbSysDomain(String orgCd, String pages) {
+        ArrayList<ColumnsEntity> columns = columnsRepository.getTbSysDomain(orgCd, pages);
+        return columns;
     }
 }

@@ -14,6 +14,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
@@ -24,8 +27,16 @@ public class UserController {
     private UserService userService;
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @PostMapping(value = "/login.gaon", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> getUser(@RequestParam("userid") String userId,@RequestParam("userpw") String userPw) throws NoSuchAlgorithmException, JSONException {
+    @PostMapping(value = "login.gaon", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<String> getUser(@RequestParam("userid") String userId,
+                                          @RequestParam("userpw") String userPw,
+                                          HttpServletRequest request,
+                                          HttpServletResponse response) throws NoSuchAlgorithmException, JSONException, UnsupportedEncodingException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json; charset=UTF-8");
+        response.setHeader("Accept", "application/x-www-form-urlencoded");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+
 
         // 비밀번호 암호화 작업
         SHA256Util sha256 = new SHA256Util();

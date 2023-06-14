@@ -9,5 +9,4 @@ public class IfouMobileWasApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(IfouMobileWasApplication.class, args);
 	}
-
 }

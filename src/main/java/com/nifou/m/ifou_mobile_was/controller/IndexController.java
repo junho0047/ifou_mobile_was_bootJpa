@@ -10,7 +10,7 @@ public class IndexController {
     public String index() {
         return "index";
     }
-    @GetMapping("/testPage")
+    @GetMapping("testPage")
     public String test() {
         return "testPage";
     }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.ArrayList;
 
+
 public interface AcqRepository extends JpaRepository<AcqEntity, Long> {
     @Query(value =
             "SELECT" +
