@@ -9,9 +9,9 @@ import org.springframework.data.repository.query.Param;
 public interface DashBoard2Repository extends JpaRepository<DashBoard2Entity, String> {
     @Query(value =
             "SELECT" +
-            "            TRIM(TO_CHAR(NVL(SUM(SALE_AMT),0),'999,999,999,999,999'))         AS saleamt" +
-            "            ,TRIM(TO_CHAR(NVL(SUM(FEE),0),'999,999,999,999,999'))            AS fee" +
-            "            ,TRIM(TO_CHAR(NVL(SUM(SALE_AMT-FEE),0),'999,999,999,999,999'))   AS sum" +
+            "            NVL(SUM(SALE_AMT),0)           AS saleamt" +
+            "            ,NVL(SUM(FEE),0)               AS fee" +
+            "            ,NVL(SUM(SALE_AMT-FEE),0)      AS sum" +
             "    FROM" +
             "            TB_MNG_DEPDATA" +
             "    WHERE" +

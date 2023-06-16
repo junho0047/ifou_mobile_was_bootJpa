@@ -9,14 +9,14 @@ import org.springframework.data.repository.query.Param;
     public interface DashBoard1Repository extends JpaRepository<DashBoard1Entity, String> {
         @Query(value =
                 "SELECT" +
-                "                TRIM(TO_CHAR(NVL(SUM(CCA-CCC),0),'999,999,999,999,999'))                         AS ccamt" +
-                "                ,TRIM(TO_CHAR(NVL(SUM(CBA-CBC),0),'999,999,999,999,999'))                         AS cbamt" +
-                "                ,TRIM(TO_CHAR(NVL(SUM(ICA-ICC),0),'999,999,999,999,999'))                         AS icamt" +
-                "                ,TRIM(TO_CHAR(NVL(SUM(CCA+CBA+ICA-CCC-CBC-ICC),0),'999,999,999,999,999'))         AS sumamt" +
-                "                ,TRIM(TO_CHAR(SUM(CCCNT),'999,999,999,999,999'))                                  AS cccnt" +
-                "                ,TRIM(TO_CHAR(SUM(CBCNT),'999,999,999,999,999'))                                  AS cbcnt" +
-                "                ,TRIM(TO_CHAR(SUM(ICCNT),'999,999,999,999,999'))                                  AS iccnt" +
-                "                ,TRIM(TO_CHAR(NVL(SUM(CCCNT+CBCNT+ICCNT),0),'999,999,999,999,999'))               AS sumcnt" +
+                "                NVL(SUM(CCA-CCC),0)                         AS ccamt" +
+                "                ,NVL(SUM(CBA-CBC),0)                        AS cbamt" +
+                "                ,NVL(SUM(ICA-ICC),0)                        AS icamt" +
+                "                ,NVL(SUM(CCA+CBA+ICA-CCC-CBC-ICC),0)       AS sumamt" +
+                "                ,SUM(CCCNT)                                 AS cccnt" +
+                "                ,SUM(CBCNT)                                 AS cbcnt" +
+                "                ,SUM(ICCNT)                                 AS iccnt" +
+                "                ,NVL(SUM(CCCNT+CBCNT+ICCNT),0)              AS sumcnt" +
                 "                FROM" +
                 "                        (SELECT" +
                 "                                SUM(CASE WHEN SVCGB = 'CC' AND APPGB = 'A' THEN AMOUNT ELSE 0 END)      AS cca" +

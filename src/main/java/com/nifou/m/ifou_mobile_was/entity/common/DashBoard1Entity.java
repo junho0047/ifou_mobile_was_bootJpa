@@ -19,28 +19,28 @@ public class DashBoard1Entity {
     @Id
     @JsonProperty("CC_AMT")
     @Column
-    private String ccamt;
+    private int ccamt;
     @JsonProperty("CB_AMT")
     @Column
-    private String cbamt;
+    private int cbamt;
     @JsonProperty("IC_AMT")
     @Column
-    private String icamt;
+    private int icamt;
     @JsonProperty("SUM_AMT")
     @Column
-    private String sumamt;
+    private int sumamt;
     @JsonProperty("CC_CNT")
     @Column
-    private String cccnt;
+    private int cccnt;
     @JsonProperty("CB_CNT")
     @Column
-    private String cbcnt;
+    private int cbcnt;
     @JsonProperty("IC_CNT")
     @Column
-    private String iccnt;
+    private int iccnt;
     @JsonProperty("SUM_CNT")
     @Column
-    private String sumcnt;
+    private int sumcnt;
 
     public DashBoard1Entity() {
 
