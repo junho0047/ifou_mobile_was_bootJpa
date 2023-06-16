@@ -6,14 +6,16 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @Builder
-public class Sub01Entity {
+public class Sub02Entity {
     @Id
     @Column
     private Long id;
@@ -24,11 +26,13 @@ public class Sub01Entity {
     @JsonProperty("dep")
     private String depnm;
     @Column
-    @JsonProperty("card")
-    private String acqnm;
+    @JsonProperty("tid")
+    private String tid;
+
     @Column
-    @JsonProperty("ACQCD")
-    private String acqcd;
+    @JsonProperty("tidnm")
+    private String tidnm;
+
     @Column
     @JsonProperty("cnt")
     private int totcnt;
@@ -36,8 +40,7 @@ public class Sub01Entity {
     @JsonProperty("amt")
     private int totamt;
 
-
-    public Sub01Entity() {
+    public Sub02Entity() {
 
     }
 }
