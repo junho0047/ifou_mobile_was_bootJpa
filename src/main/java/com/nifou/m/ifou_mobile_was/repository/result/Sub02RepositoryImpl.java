@@ -54,7 +54,7 @@ public class Sub02RepositoryImpl implements Sub02Repository{
                     .append("        WHERE TID IN (SELECT TID FROM TB_BAS_TIDMAP WHERE ORG_CD = :orgcd)")
                     .append("        AND TID IS NOT NULL");
 
-            // 동적쿼리 추가
+            // 동적쿼리 추가 (날짜, 사업부, 단말기)
             if (setWhere != null && !setWhere.isEmpty()) {
                 queryBuilder.append(setWhere);
             }

@@ -89,7 +89,7 @@ public class Sub03RepositoryImpl implements Sub03Repository{
                 .append("            LEFT OUTER JOIN (SELECT PUR_NM, PUR_OCD, PUR_KOCES FROM TB_BAS_PURINFO) T5 ON (T1.ACQ_CD=T5.PUR_OCD OR T1.ACQ_CD=T5.PUR_KOCES)")
                 .append("            WHERE SVCGB IN ('CB') AND AUTHCD='0000'");
 
-                // 동적쿼리 추가 (조건)
+        // 동적쿼리 추가 (날짜, 사업부, 단말기)
                 if (setWhere != null && !setWhere.isEmpty()) {
                     queryBuilder.append(setWhere);
                 }
