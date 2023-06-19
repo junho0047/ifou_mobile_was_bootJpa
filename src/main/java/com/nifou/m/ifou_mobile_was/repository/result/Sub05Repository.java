@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.ArrayList;
 
 public interface Sub05Repository extends JpaRepository<Sub05Entity, Long> {
-    ArrayList<Sub05Entity> getSub05(String orgcd, String setWhere, String setWhere2);
+    ArrayList<Sub05Entity> getSub05(String orgcd, String setWhere);
 }

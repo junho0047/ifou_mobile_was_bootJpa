@@ -20,7 +20,7 @@ public class Sub05RepositoryImpl implements Sub05Repository{
     private EntityManager entityManager;
 
     @Override
-    public ArrayList<Sub05Entity> getSub05(String orgcd, String setWhere, String setWhere2) {
+    public ArrayList<Sub05Entity> getSub05(String orgcd, String setWhere) {
         StringBuilder queryBuilder = new StringBuilder();
         queryBuilder.append("SELECT ")
             .append("    ROW_NUMBER() OVER(ORDER BY DEP_NM) AS id, ")
@@ -53,7 +53,7 @@ public class Sub05RepositoryImpl implements Sub05Repository{
             .append("            CASE WHEN T2.RTN_CD = '67' AND T1.CHECK_CARD = 'Y' THEN fee ELSE 0 END AS check_fee_c, ")
             .append("            APPDD, TID, acq_cd ")
             .append("        FROM ( ")
-            .append("            SELECT * ")
+            .append("            SELECT APPDD, TID, ACQ_CD, APPGB, TRANIDX, AMOUNT, CHECK_CARD ")
             .append("            FROM GLOB_MNG_ICVAN ")
             .append("            WHERE SVCGB IN ('CC', 'CE') ")
             .append("                AND AUTHCD='0000' ");
@@ -67,9 +67,8 @@ public class Sub05RepositoryImpl implements Sub05Repository{
             .append("        LEFT OUTER JOIN ( ")
             .append("            SELECT EXP_DD, REQ_DD, REG_DD, APP_DD, TRANIDX, RSC_CD, RTN_CD, FEE, SALE_AMT ")
             .append("            FROM TB_MNG_DEPDATA ")
-            .append("            WHERE RTN_CD IN ('60','67') ");
-        queryBuilder.append(setWhere2);
-        queryBuilder.append("        ) T2 ON (T1.APPDD = T2.APP_DD AND T1.TRANIDX = T2.TRANIDX) ")
+            .append("            WHERE RTN_CD IN ('60','67') ")
+            .append("        ) T2 ON (T1.APPDD = T2.APP_DD AND T1.TRANIDX = T2.TRANIDX) ")
             .append("    ) ")
             .append("    GROUP BY APPDD, tid, acq_cd ")
             .append(") S1 ")

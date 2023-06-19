@@ -326,23 +326,20 @@ public class ResultController {
 
 
         String setWhere = "";
-        String setWhere2    ="";
 
 
         // 날짜 조건검색
-        setWhere += " AND APPDD BETWEEN '"+sappdd+"' AND '"+eappdd+"'";
-        setWhere2 += " AND APP_DD BETWEEN '"+sappdd+"' AND '"+eappdd+"'";
+        setWhere += " AND APPDD IS NOT NULL AND APPDD BETWEEN '"+sappdd+"' AND '"+eappdd+"' ";
+
         // 사업부 조건 검색
         if(depcd==null||depcd.equals("")) {
-            setWhere += " AND TID IN (SELECT TID FROM TB_BAS_TIDMAP  WHERE ORG_CD='"+orgcd+"') ";
-            setWhere2 += " AND TID IN (SELECT TID FROM TB_BAS_TIDMAP  WHERE ORG_CD='"+orgcd+"') ";
+            setWhere += " AND TID IS NOT NULL AND TID IN (SELECT TID FROM TB_BAS_TIDMAP  WHERE ORG_CD='"+orgcd+"') ";
         } else {
-            setWhere += " AND TID IN (SELECT TID FROM TB_BAS_TIDMAP  WHERE DEP_CD='"+depcd+"' AND ORG_CD='"+orgcd+"') ";
-            setWhere2 += " AND TID IN (SELECT TID FROM TB_BAS_TIDMAP  WHERE DEP_CD='"+depcd+"' AND ORG_CD='"+orgcd+"') ";
+            setWhere += " AND TID IS NOT NULL AND TID IN (SELECT TID FROM TB_BAS_TIDMAP  WHERE DEP_CD='"+depcd+"' AND ORG_CD='"+orgcd+"') ";
         }
 
 
-        ArrayList<Sub05Entity> sub05 = resultService.getSub05(orgcd, setWhere, setWhere2);
+        ArrayList<Sub05Entity> sub05 = resultService.getSub05(orgcd, setWhere);
 
         // ColumnsInfo에 저장된 데이터 뽑아서 json형식으로 변환
         JSONObject jsonOb = new JSONObject();

@@ -39,8 +39,8 @@ public class ResultService {
         return sub04;
     }
 
-    public ArrayList<Sub05Entity> getSub05(String orgcd, String setWhere, String setWhere2) {
-        ArrayList<Sub05Entity> sub05 = sub05Repository.getSub05(orgcd, setWhere, setWhere2);
+    public ArrayList<Sub05Entity> getSub05(String orgcd, String setWhere) {
+        ArrayList<Sub05Entity> sub05 = sub05Repository.getSub05(orgcd, setWhere);
         return sub05;
     }
 }
