@@ -307,4 +307,66 @@ public class ResultController {
         return ResponseEntity.ok(jsonArray.toString());
     }
 
+    @PostMapping(value = "sub05", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<String> getSub05(WhereEntity whereEntity,
+                                           HttpServletRequest request,
+                                           HttpServletResponse response) throws NoSuchAlgorithmException, JsonProcessingException, IOException, JSONException, ParseException {
+        // 현금영수증 조회 API
+
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json; charset=UTF-8");
+        response.setHeader("Accept", "application/x-www-form-urlencoded");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+
+        // 파라미터 설정
+        String sappdd = whereEntity.getSappdd();
+        String eappdd = whereEntity.getEappdd();
+        String orgcd  = whereEntity.getOrgcd();
+        String depcd  = whereEntity.getDepcd();
+
+
+        String setWhere = "";
+        String setWhere2    ="";
+
+
+        // 날짜 조건검색
+        setWhere += " AND APPDD BETWEEN '"+sappdd+"' AND '"+eappdd+"'";
+        setWhere2 += " AND APP_DD BETWEEN '"+sappdd+"' AND '"+eappdd+"'";
+        // 사업부 조건 검색
+        if(depcd==null||depcd.equals("")) {
+            setWhere += " AND TID IN (SELECT TID FROM TB_BAS_TIDMAP  WHERE ORG_CD='"+orgcd+"') ";
+            setWhere2 += " AND TID IN (SELECT TID FROM TB_BAS_TIDMAP  WHERE ORG_CD='"+orgcd+"') ";
+        } else {
+            setWhere += " AND TID IN (SELECT TID FROM TB_BAS_TIDMAP  WHERE DEP_CD='"+depcd+"' AND ORG_CD='"+orgcd+"') ";
+            setWhere2 += " AND TID IN (SELECT TID FROM TB_BAS_TIDMAP  WHERE DEP_CD='"+depcd+"' AND ORG_CD='"+orgcd+"') ";
+        }
+
+
+        ArrayList<Sub05Entity> sub05 = resultService.getSub05(orgcd, setWhere, setWhere2);
+
+        // ColumnsInfo에 저장된 데이터 뽑아서 json형식으로 변환
+        JSONObject jsonOb = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        for (Sub05Entity i : sub05) {
+
+
+            // 날짜형식 변환
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyMMdd");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yy.MM.dd");
+            Date beforeSappdd = inputFormat.parse(i.getAppdd().substring(2,8));
+            String AfterSappdd = outputFormat.format(beforeSappdd);
+
+
+
+            jsonOb.put("appdd", AfterSappdd);
+            jsonOb.put("dep", i.getDepnm());
+            jsonOb.put("totsales", i.getTotsales());
+            jsonOb.put("totreceivable", i.getTotreceivable());
+
+            jsonArray.put(jsonOb);
+            jsonOb = new JSONObject();
+        }
+        return ResponseEntity.ok(jsonArray.toString());
+    }
+
 }
