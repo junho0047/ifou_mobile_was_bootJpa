@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
+@Repository
 public class Sub05RepositoryImpl implements Sub05Repository{
     @PersistenceContext
     private EntityManager entityManager;

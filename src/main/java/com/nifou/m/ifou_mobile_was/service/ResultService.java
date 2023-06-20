@@ -19,6 +19,8 @@ public class ResultService {
     private Sub04RepositoryImpl sub04Repository;
     @Autowired
     private Sub05RepositoryImpl sub05Repository;
+    @Autowired
+    private Sub06RepositoryImpl sub06Repository;
     public ArrayList<Sub01Entity> getSub01(String orgcd, String setWhere) {
         ArrayList<Sub01Entity> sub01 = sub01Repository.getSub01(orgcd, setWhere);
         return sub01;
@@ -42,5 +44,10 @@ public class ResultService {
     public ArrayList<Sub05Entity> getSub05(String orgcd, String setWhere) {
         ArrayList<Sub05Entity> sub05 = sub05Repository.getSub05(orgcd, setWhere);
         return sub05;
+    }
+
+    public ArrayList<Sub06Entity> getSub06(String orgcd, String setWhere, String expddWhere, String acqWhere) {
+        ArrayList<Sub06Entity> sub06 = sub06Repository.getSub06(orgcd, setWhere, expddWhere, acqWhere);
+        return sub06;
     }
 }

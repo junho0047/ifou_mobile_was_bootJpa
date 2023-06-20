@@ -73,7 +73,7 @@ public class ResultController {
 
         ArrayList<Sub01Entity> sub01 = resultService.getSub01(orgcd, setWhere);
 
-        // ColumnsInfo에 저장된 데이터 뽑아서 json형식으로 변환
+        // sub01에 저장된 데이터 뽑아서 json형식으로 변환
         JSONObject jsonOb = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         for (Sub01Entity i : sub01) {
@@ -142,7 +142,7 @@ public class ResultController {
 
         ArrayList<Sub02Entity> sub02 = resultService.getSub02(orgcd, setWhere);
 
-        // ColumnsInfo에 저장된 데이터 뽑아서 json형식으로 변환
+        // sub02에 저장된 데이터 뽑아서 json형식으로 변환
         JSONObject jsonOb = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         for (Sub02Entity i : sub02) {
@@ -211,7 +211,7 @@ public class ResultController {
 
         ArrayList<Sub03Entity> sub03 = resultService.getSub03(orgcd, setWhere);
 
-        // ColumnsInfo에 저장된 데이터 뽑아서 json형식으로 변환
+        // sub03에 저장된 데이터 뽑아서 json형식으로 변환
         JSONObject jsonOb = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         for (Sub03Entity i : sub03) {
@@ -280,7 +280,7 @@ public class ResultController {
 
         ArrayList<Sub04Entity> sub04 = resultService.getSub04(orgcd, setWhere);
 
-        // ColumnsInfo에 저장된 데이터 뽑아서 json형식으로 변환
+        // sub04에 저장된 데이터 뽑아서 json형식으로 변환
         JSONObject jsonOb = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         for (Sub04Entity i : sub04) {
@@ -341,7 +341,7 @@ public class ResultController {
 
         ArrayList<Sub05Entity> sub05 = resultService.getSub05(orgcd, setWhere);
 
-        // ColumnsInfo에 저장된 데이터 뽑아서 json형식으로 변환
+        // sub05에 저장된 데이터 뽑아서 json형식으로 변환
         JSONObject jsonOb = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         for (Sub05Entity i : sub05) {
@@ -366,4 +366,74 @@ public class ResultController {
         return ResponseEntity.ok(jsonArray.toString());
     }
 
+    @PostMapping(value = "sub06", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<String> getSub06(WhereEntity whereEntity,
+                                           HttpServletRequest request,
+                                           HttpServletResponse response) throws NoSuchAlgorithmException, JsonProcessingException, IOException, JSONException, ParseException {
+        // 카드사별 조회 API
+
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("application/json; charset=UTF-8");
+        response.setHeader("Accept", "application/x-www-form-urlencoded");
+        response.setHeader("Access-Control-Allow-Origin", "*");
+
+        // 파라미터 설정
+        String sexpdd = whereEntity.getSexpdd();
+        String eexpdd = whereEntity.getEexpdd();
+        String orgcd  = whereEntity.getOrgcd();
+        String depcd  = whereEntity.getDepcd();
+        String acqcd  = whereEntity.getAcqcd();
+
+
+
+
+        String setWhere = "";
+        String expddWhere = "";
+        String acqWhere = "";
+
+        // 날짜 조건검색
+
+        // 사업부 조건 검색
+        if(depcd==null||depcd.equals("")) {
+            setWhere += "MID IN (SELECT MID FROM TB_BAS_MIDMAP  WHERE ORG_CD='"+orgcd+"') ";
+        } else {
+            setWhere += "MID IN (SELECT MID FROM TB_BAS_MIDMAP  WHERE DEP_CD='"+depcd+"' AND ORG_CD='"+orgcd+"') ";
+        }
+        expddWhere += "EXP_DD BETWEEN '"+sexpdd+"' AND '"+eexpdd+"'";
+
+
+        // 카드사 조건 검색
+        if(acqcd==null||acqcd.equals("")) {
+            acqWhere += "";
+        } else {
+            acqWhere += " AND T7.PUR_KOCES IN('"+acqcd+"')";
+        }
+
+        ArrayList<Sub06Entity> sub06 = resultService.getSub06(orgcd, setWhere, expddWhere, acqWhere);
+
+        // sub06에 저장된 데이터 뽑아서 json형식으로 변환
+        JSONObject jsonOb = new JSONObject();
+        JSONArray jsonArray = new JSONArray();
+        for (Sub06Entity i : sub06) {
+
+
+            // 날짜형식 변환
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyMMdd");
+            SimpleDateFormat outputFormat = new SimpleDateFormat("yy.MM.dd");
+            Date beforeSexpdd = inputFormat.parse(i.getExpdd().substring(2,8));
+            String AfterSexpdd = outputFormat.format(beforeSexpdd);
+
+
+
+            jsonOb.put("expdd", AfterSexpdd);
+            jsonOb.put("dep", i.getDepnm());
+            jsonOb.put("card", i.getAcqnm());
+//            jsonOb.put("ACQCD", i.getAcqcd());
+            jsonOb.put("amt", i.getTotamt());
+
+            jsonArray.put(jsonOb);
+            jsonOb = new JSONObject();
+        }
+        return ResponseEntity.ok(jsonArray.toString());
+    }
 }
