@@ -19,13 +19,13 @@ public class DashBoard2Entity {
     @Id
     @JsonProperty("SALE_AMT")
     @Column
-    private int saleamt;
+    private Long saleamt;
     @JsonProperty("FEE")
     @Column
-    private int fee;
+    private Long fee;
     @JsonProperty("SUM")
     @Column
-    private int sum;
+    private Long sum;
     public DashBoard2Entity() {
 
     }

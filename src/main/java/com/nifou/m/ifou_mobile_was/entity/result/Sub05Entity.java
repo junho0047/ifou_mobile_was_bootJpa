@@ -30,7 +30,7 @@ public class Sub05Entity {
     private int totsales;
     @Column
     @JsonProperty("amt")
-    private int totreceivable;
+    private Long totreceivable;
 
     public Sub05Entity() {
 

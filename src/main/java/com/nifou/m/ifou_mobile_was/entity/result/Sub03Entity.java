@@ -39,7 +39,7 @@ public class Sub03Entity {
         private int totcnt;
         @Column
         @JsonProperty("amt")
-        private int totamt;
+        private Long totamt;
 
     public Sub03Entity() {
 

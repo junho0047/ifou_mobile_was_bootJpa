@@ -19,16 +19,16 @@ public class DashBoard1Entity {
     @Id
     @JsonProperty("CC_AMT")
     @Column
-    private int ccamt;
+    private Long ccamt;
     @JsonProperty("CB_AMT")
     @Column
-    private int cbamt;
+    private Long cbamt;
     @JsonProperty("IC_AMT")
     @Column
-    private int icamt;
+    private Long icamt;
     @JsonProperty("SUM_AMT")
     @Column
-    private int sumamt;
+    private Long sumamt;
     @JsonProperty("CC_CNT")
     @Column
     private int cccnt;
