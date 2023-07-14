@@ -29,6 +29,8 @@ public class Sub05RepositoryImpl implements Sub05Repository{
             .append("    S4.DEP_NM depnm, ")
             .append("    TO_CHAR(TO_DATE(S1.APPDD, 'YYYYMMDD'), 'YYYYMMDD') AS appdd, ")
             .append("    SUM(card_amount) + SUM(check_amount) AS totsales, ")
+            .append("    SUM(card_fee) + SUM(check_fee) AS totfee, ")
+            .append("    (SUM(card_amount) + SUM(check_amount)) - (SUM(card_fee) + SUM(check_fee)) AS totsaleamt, ")
             .append("    (SUM(card_amount) - SUM(card_depo)) + (SUM(check_amount) - SUM(check_depo)) AS totreceivable ")
             .append("FROM ( ")
             .append("    SELECT ")

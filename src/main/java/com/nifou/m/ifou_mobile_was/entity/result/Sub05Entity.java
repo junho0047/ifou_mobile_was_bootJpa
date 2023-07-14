@@ -27,7 +27,13 @@ public class Sub05Entity {
     private String depnm;
     @Column
     @JsonProperty("cnt")
-    private int totsales;
+    private Long totsales;
+    @Column
+    @JsonProperty("fee")
+    private Long totfee;
+    @Column
+    @JsonProperty("saleamt")
+    private Long totsaleamt;
     @Column
     @JsonProperty("amt")
     private Long totreceivable;

@@ -4,8 +4,9 @@ import com.nifou.m.ifou_mobile_was.entity.common.DashBoard1Entity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-
+@Repository
     public interface DashBoard1Repository extends JpaRepository<DashBoard1Entity, String> {
         @Query(value =
                 "SELECT" +

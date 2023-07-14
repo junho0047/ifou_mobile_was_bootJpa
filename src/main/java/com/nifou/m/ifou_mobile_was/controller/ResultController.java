@@ -311,7 +311,7 @@ public class ResultController {
     public ResponseEntity<String> getSub05(WhereEntity whereEntity,
                                            HttpServletRequest request,
                                            HttpServletResponse response) throws NoSuchAlgorithmException, JsonProcessingException, IOException, JSONException, ParseException {
-        // 현금영수증 조회 API
+        // 매출대비입금조회 API
 
         request.setCharacterEncoding("UTF-8");
         response.setContentType("application/json; charset=UTF-8");
@@ -358,6 +358,8 @@ public class ResultController {
             jsonOb.put("appdd", AfterSappdd);
             jsonOb.put("dep", i.getDepnm());
             jsonOb.put("totsales", i.getTotsales());
+            jsonOb.put("totfee", i.getTotfee());
+            jsonOb.put("totsaleamt", i.getTotsaleamt());
             jsonOb.put("totreceivable", i.getTotreceivable());
 
             jsonArray.put(jsonOb);

@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface UserRepository  extends JpaRepository<UserEntity, Long> {
-    @Query(value = "SELECT * FROM TB_BAS_USER WHERE USER_ID = :userid AND USER_PW = :userpw", nativeQuery = true)
-    public UserEntity getUser(@Param("userid") String userId, @Param("userpw") String userPw);
+    @Query(value = "SELECT * FROM TB_BAS_USER WHERE USER_ID = :userid ", nativeQuery = true)
+    public UserEntity getUser(@Param("userid") String userId);
 
 
 

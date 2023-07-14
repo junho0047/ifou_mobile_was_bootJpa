@@ -16,9 +16,9 @@ public class UserService {
     @Autowired
     private UserUauthRepository userUauthRepository;
 
-    public UserEntity getUser(String userId,String userPw) {
+    public UserEntity getUser(String userId) {
         UserEntity uInfo = new UserEntity();
-        uInfo = userRepository.getUser(userId, userPw);
+        uInfo = userRepository.getUser(userId);
         return uInfo;
     }
 
